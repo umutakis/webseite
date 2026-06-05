@@ -1,156 +1,1717 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Webseite</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZOB – Zeitorientierte Betriebswirtschaft | V&S</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* V&S Markenfarben */
+    --petrol: #009999;
+    --petrol-dark: #007A7A;
+    --petrol-darker: #005C5C;
+    --petrol-soft: #E5F4F4;
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: #333;
-            line-height: 1.6;
-        }
+    /* Logo-Grau */
+    --gray-mark: #8B8680;
+    --gray-mark-dark: #6D6963;
+    --gray-mark-soft: #EEEDEA;
 
-        header {
-            background: #1a1a2e;
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* Neutrale Basis */
+    --black: #0F1419;
+    --text: #0F1419;
+    --text-muted: #5A6470;
+    --bg: #FFFFFF;
+    --bg-soft: #F5F7F8;
+    --bg-section: #EEF1F3;
+    --border: #E2E6EA;
 
-        header .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
+    --shadow-sm: 0 1px 2px rgba(15,20,25,.04), 0 2px 8px rgba(15,20,25,.04);
+    --shadow-md: 0 4px 16px rgba(15,20,25,.06), 0 8px 32px rgba(15,20,25,.05);
+    --radius: 12px;
+  }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 2rem;
-            transition: opacity 0.2s;
-        }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        nav a:hover {
-            opacity: 0.7;
-        }
+  html { scroll-behavior: smooth; }
 
-        .hero {
-            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-            color: white;
-            text-align: center;
-            padding: 6rem 2rem;
-        }
+  body {
+    font-family: 'Manrope', -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.55;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
 
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.85;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 14px 0;
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .nav-logo-svg {
+    display: block;
+    height: 46px;
+    width: auto;
+  }
+  .nav-tagline {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+  .nav-tagline .nav-product {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -.2px;
+    color: var(--text);
+  }
+  .nav-tagline .nav-sub {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: .3px;
+  }
+  .nav-cta {
+    background: var(--petrol);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--petrol-dark); }
 
-        .hero button {
-            background: #e94560;
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            font-size: 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 80px 0 72px;
+    background:
+      radial-gradient(circle at 88% 12%, rgba(0,153,153,.07), transparent 55%),
+      radial-gradient(circle at 12% 88%, rgba(139,134,128,.05), transparent 55%);
+  }
+  .hero-grid {
+    display: flex;
+    align-items: center;
+    gap: 56px;
+  }
+  .hero-content { flex: 1 1 60%; min-width: 0; }
+  .hero-logo-wrap { flex: 1 1 40%; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 18px; }
+  .hero-logo {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    filter: drop-shadow(0 14px 30px rgba(15,20,25,.12));
+    animation: logoSpin 2.4s cubic-bezier(.16,.85,.3,1) both;
+    transform-origin: 50% 50%;
+  }
+  @keyframes logoSpin {
+    0%   { transform: rotate(0deg) scale(.55); opacity: 0; }
+    25%  { opacity: 1; }
+    100% { transform: rotate(1080deg) scale(1); opacity: 1; }
+  }
 
-        .hero button:hover {
-            background: #c73652;
-        }
+  .logo-square {
+    transform-origin: 190px 190px;
+    transform-box: fill-box;
+  }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            padding: 4rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+  /* Uhr-Optik erscheint nach dem Spin */
+  .clock-ring.outer { opacity: 0; animation: fadeRingOuter .8s ease 2.2s forwards; }
+  .clock-ring.inner { opacity: 0; animation: fadeRingInner .8s ease 2.4s forwards; }
+  .clock-marks      { opacity: 0; animation: fadeClockMarks .8s ease 2.0s forwards; }
+  @keyframes fadeRingOuter  { to { opacity: .35; } }
+  @keyframes fadeRingInner  { to { opacity: .22; } }
+  @keyframes fadeClockMarks { to { opacity: .55; } }
+  .hero-logo-credit {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .hero-logo-credit b {
+    color: var(--petrol);
+    font-weight: 800;
+  }
+  @keyframes logoIn {
+    from { opacity: 0; transform: translateY(10px) scale(.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @media (max-width: 860px) {
+    .hero-grid { flex-direction: column; gap: 40px; align-items: flex-start; }
+    .hero-logo-wrap { align-items: center; width: 100%; }
+    .hero-logo { max-width: 240px; }
+  }
+  .hero-slogan {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: clamp(14px, 1.2vw, 16px);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--petrol);
+    margin-bottom: 18px;
+    line-height: 1.4;
+  }
+  .hero-slogan::before {
+    content: "";
+    width: 32px;
+    height: 2px;
+    background: var(--petrol);
+    display: inline-block;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 3.6vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -.8px;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+  .hero h1 .highlight { color: var(--petrol); }
+  .hero h1 .highlight {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: heroIn 1s cubic-bezier(.2,.7,.2,1) .1s forwards;
+  }
+  @keyframes heroIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .h1-rest .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: wordIn .65s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  @keyframes wordIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-subline {
+    font-size: clamp(17px, 1.7vw, 22px);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -.2px;
+    color: var(--text);
+    margin-bottom: 22px;
+  }
+  .hero-subline .highlight { color: var(--gray-mark-dark); }
+  .hero-lead {
+    font-size: clamp(17px, 1.5vw, 19px);
+    color: var(--text-muted);
+    max-width: 640px;
+    margin-bottom: 32px;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--petrol);
+    color: #fff;
+    padding: 16px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all .2s;
+    box-shadow: 0 4px 14px rgba(0,153,153,.28);
+  }
+  .btn-primary:hover {
+    background: var(--petrol-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0,153,153,.36);
+  }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: var(--text);
+    padding: 14px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1.5px solid var(--border);
+    transition: all .2s;
+  }
+  .btn-outline:hover {
+    border-color: var(--gray-mark);
+    background: var(--bg-soft);
+  }
+  .btn-outline .btn-eyebrow {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gray-mark-dark);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1.5px solid rgba(255,255,255,.4);
+    margin-left: 12px;
+    transition: all .2s;
+  }
+  .btn-secondary:hover {
+    background: rgba(255,255,255,.12);
+    border-color: rgba(255,255,255,.65);
+  }
 
-        .card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-        }
+  /* ---------- STATS BAND ---------- */
+  .stats {
+    background: var(--petrol);
+    color: #fff;
+    padding: 40px 0;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+  .stat-num {
+    display: block;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 6px;
+    color: #fff;
+  }
+  .stat-label {
+    font-size: 14px;
+    opacity: .9;
+    font-weight: 500;
+  }
+  .stat-divider {
+    border-right: 1px solid rgba(255,255,255,.22);
+  }
 
-        .card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
+  /* ---------- SECTIONS ---------- */
+  section.block {
+    padding: 88px 0;
+  }
+  section.block.alt {
+    background: var(--bg-soft);
+  }
+  .section-head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .section-head h2 {
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: -.5px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .section-head p {
+    color: var(--text-muted);
+    font-size: 17px;
+    max-width: 620px;
+    margin: 0 auto;
+  }
 
-        .card h3 {
-            margin-bottom: 0.5rem;
-        }
+  /* ---------- PROBLEM CARDS ---------- */
+  .problems-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .problem-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: all .2s;
+  }
+  .problem-card:hover {
+    border-color: var(--petrol);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .problem-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--petrol-soft);
+    color: var(--petrol);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .problem-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .problem-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+  }
 
-        .card p {
-            color: #666;
-            font-size: 0.95rem;
-        }
+  /* ---------- SOLUTION ---------- */
+  .solution-intro {
+    max-width: 760px;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+  .solution-intro h2 {
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: -.5px;
+    margin-bottom: 16px;
+  }
+  .solution-intro p {
+    font-size: 18px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
 
-        footer {
-            background: #1a1a2e;
-            color: rgba(255, 255, 255, 0.6);
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-        }
-    </style>
+  .solution-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+  .solution-point {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px 24px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: all .2s;
+  }
+  .solution-point:hover {
+    border-color: var(--petrol);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .solution-point-num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--petrol);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+  .solution-point h4 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .solution-point p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .solution-callout {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gray-mark);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    max-width: 880px;
+    margin: 0 auto 48px;
+  }
+  .solution-callout .callout-quote {
+    font-size: 22px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--gray-mark-dark);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .solution-callout p {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .solution-callout p:last-child { margin-bottom: 0; }
+  .solution-callout p.emphasis {
+    color: var(--text);
+    font-weight: 700;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    margin-top: 14px;
+  }
+  .solution-callout p.emphasis em {
+    font-style: normal;
+    color: var(--petrol);
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .pillar {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    text-align: left;
+    transition: all .25s;
+    position: relative;
+  }
+  .pillar::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--petrol);
+    border-radius: var(--radius) 0 0 var(--radius);
+    opacity: 0;
+    transition: opacity .25s;
+  }
+  .pillar:hover {
+    border-color: var(--petrol);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .pillar:hover::before { opacity: 1; }
+  .pillar-num {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray-mark-dark);
+    margin-bottom: 12px;
+    letter-spacing: 1.2px;
+  }
+  .pillar h3 {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .pillar p {
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  /* ---------- CASE STUDY ---------- */
+  .case {
+    background: var(--petrol);
+    color: #fff;
+    border-radius: 18px;
+    padding: 56px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .case::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(139,134,128,.25), transparent 70%);
+    border-radius: 50%;
+  }
+  .case-content {
+    position: relative;
+    z-index: 1;
+  }
+  .case .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #BFE9E9;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+  }
+  .case h2 {
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    letter-spacing: -.5px;
+  }
+  .case > .case-content > p {
+    opacity: .92;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .case-reduction {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,.14);
+    color: #fff;
+    padding: 14px 22px 14px 20px;
+    border-radius: 100px;
+    margin-top: 24px;
+    border: 1.5px solid rgba(255,255,255,.25);
+    position: relative;
+  }
+  .case-reduction-num {
+    font-size: clamp(30px, 3.6vw, 40px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1;
+  }
+  .case-reduction-num .approx {
+    font-weight: 500;
+    margin-right: 2px;
+    opacity: .9;
+  }
+  .case-reduction-text b {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+
+  /* Vorher/Nachher klassisch */
+  .case-visual {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .case-before, .case-after {
+    display: inline-block;
+    text-align: center;
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .case-before { opacity: .55; }
+  .case-arrow {
+    display: inline-block;
+    color: #fff;
+    font-size: 32px;
+    margin: 0 24px;
+    vertical-align: middle;
+    opacity: .65;
+    transition: transform .8s cubic-bezier(.2,.7,.2,1) .3s, opacity .4s ease .3s;
+  }
+  .case-value {
+    font-size: clamp(38px, 5.2vw, 60px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -1.5px;
+    color: #fff;
+  }
+  .case-value.crossed {
+    text-decoration: line-through;
+    text-decoration-color: rgba(255,255,255,.5);
+    text-decoration-thickness: 3px;
+  }
+  .case-after .case-value { color: #BFE9E9; }
+  .case-unit {
+    display: block;
+    font-size: 13px;
+    opacity: .75;
+    margin-top: 8px;
+    letter-spacing: .8px;
+    font-weight: 600;
+  }
+  /* Scroll-Trigger fade-in für die Nachher-Werte */
+  .case-after {
+    opacity: 0;
+    transform: scale(.85);
+  }
+  .case-visual.in-view .case-after {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: .5s;
+  }
+  .case-arrow {
+    transform: translateX(-12px);
+    opacity: 0;
+  }
+  .case-visual.in-view .case-arrow {
+    transform: translateX(0);
+    opacity: .65;
+  }
+  .case-chart {
+    grid-column: 1 / -1;
+    margin-top: 24px;
+    padding: 28px 28px 24px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .case-chart-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .case-chart-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.2px;
+  }
+  .case-chart-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,.65);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+  }
+  .case-chart-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .case-chart-note {
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgba(255,255,255,.85);
+    text-align: center;
+    line-height: 1.5;
+  }
+  .case-chart-note b { color: #BFE9E9; font-weight: 700; }
+
+  /* ---------- BENEFITS ---------- */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .benefit {
+    text-align: center;
+    padding: 16px 12px;
+  }
+  .benefit-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--petrol-soft);
+    color: var(--petrol);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .benefit:nth-child(2) .benefit-icon { background: var(--gray-mark-soft); color: var(--gray-mark-dark); }
+  .benefit:nth-child(4) .benefit-icon { background: var(--gray-mark-soft); color: var(--gray-mark-dark); }
+  .benefit h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .benefit p {
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  /* ---------- STEPS ---------- */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    position: relative;
+  }
+  .step {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    position: relative;
+    transition: all .2s;
+  }
+  .step:hover {
+    border-color: var(--petrol);
+    box-shadow: var(--shadow-md);
+  }
+  /* Pfeil zwischen den Schritten — zeigt die Reihenfolge */
+  .step::after {
+    content: "→";
+    position: absolute;
+    right: -22px;
+    top: 50%;
+    color: var(--petrol);
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    z-index: 3;
+    opacity: 0;
+    transform: translate(-12px, -50%);
+    transition: opacity .5s ease, transform .5s ease;
+    pointer-events: none;
+  }
+  .step:last-child::after { display: none; }
+  .step.anim-fade.in-view::after {
+    opacity: .7;
+    transform: translate(0, -50%);
+    transition-delay: .35s;
+  }
+  .step.anim-fade.delay-1.in-view::after { transition-delay: .5s; }
+  .step.anim-fade.delay-2.in-view::after { transition-delay: .65s; }
+  .step.anim-fade.delay-3.in-view::after { transition-delay: .8s; }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--petrol);
+    color: #fff;
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .step h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .step p {
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  /* ---------- SLOGAN ---------- */
+  .slogan-section {
+    padding: 80px 0;
+    text-align: center;
+    background: var(--bg);
+  }
+  .slogan-text {
+    font-size: clamp(22px, 2.6vw, 32px);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -.4px;
+    line-height: 1.3;
+    margin: 24px 0;
+  }
+  .slogan-text em {
+    font-style: normal;
+    color: var(--petrol);
+    position: relative;
+  }
+  .slogan-text em::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 2px;
+    background: var(--gray-mark);
+    opacity: .5;
+  }
+  .slogan-line {
+    width: 60px;
+    height: 2px;
+    background: var(--petrol);
+    margin: 0 auto;
+    opacity: .5;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-section {
+    background: linear-gradient(135deg, var(--petrol) 0%, var(--petrol-darker) 100%);
+    color: #fff;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-section::before {
+    content: "";
+    position: absolute;
+    top: -150px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139,134,128,.22), transparent 70%);
+    border-radius: 50%;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .contact-text h2 {
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.15;
+    letter-spacing: -.5px;
+  }
+  .contact-text p {
+    opacity: .9;
+    font-size: 17px;
+    margin-bottom: 28px;
+    max-width: 480px;
+  }
+  .contact-section .btn-primary {
+    background: #fff;
+    color: var(--petrol-darker);
+    box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  }
+  .contact-section .btn-primary:hover {
+    background: #f3f3f3;
+    box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  }
+  .contact-cards {
+    display: grid;
+    gap: 16px;
+  }
+  .contact-card {
+    background: rgba(255,255,255,.10);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 12px;
+    padding: 20px 22px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .avatar {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--gray-mark);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    object-fit: cover;
+    object-position: center top;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,.25);
+  }
+  img.avatar { display: block; padding: 0; }
+  .contact-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .contact-card .role {
+    font-size: 13px;
+    opacity: .75;
+    margin-bottom: 8px;
+  }
+  .contact-card .details {
+    font-size: 14px;
+    opacity: .9;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .contact-card .details a {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .contact-card .details a:hover { opacity: .7; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--black);
+    color: rgba(255,255,255,.65);
+    padding: 28px 0;
+    font-size: 13px;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer a {
+    color: rgba(255,255,255,.65);
+    text-decoration: none;
+    margin-left: 16px;
+    transition: color .2s;
+  }
+  footer a:hover { color: #fff; }
+
+  /* ---------- SCROLL-TRIGGERED ANIMATIONS ---------- */
+  .anim-fade {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  .anim-fade.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .anim-fade.delay-1 { transition-delay: .08s; }
+  .anim-fade.delay-2 { transition-delay: .16s; }
+  .anim-fade.delay-3 { transition-delay: .24s; }
+  .anim-fade.delay-4 { transition-delay: .32s; }
+
+  /* Chart Pfad-Animation */
+  .chart-area {
+    opacity: 0;
+    transition: opacity 1s ease .4s;
+  }
+  .case-chart-svg.in-view .chart-area { opacity: .28; }
+  .chart-line {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    transition: stroke-dashoffset 2.2s cubic-bezier(.2,.7,.2,1) .2s;
+  }
+  .case-chart-svg.in-view .chart-line { stroke-dashoffset: 0; }
+  .chart-dot, .chart-label {
+    opacity: 0;
+    transition: opacity .4s ease .3s;
+  }
+  .case-chart-svg.in-view .chart-dot,
+  .case-chart-svg.in-view .chart-label { opacity: 1; }
+  .chart-dot.pulse {
+    animation: dotPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { r: 8; }
+    50%      { r: 10; }
+  }
+
+  /* Pulse für Case-Reduction Badge */
+  .case-reduction::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 100px;
+    border: 2px solid rgba(255,255,255,.30);
+    animation: pulseRing 2.4s ease-out infinite;
+    pointer-events: none;
+  }
+  @keyframes pulseRing {
+    0%   { transform: scale(1);    opacity: .7; }
+    70%  { transform: scale(1.08); opacity: 0; }
+    100% { transform: scale(1.08); opacity: 0; }
+  }
+
+  /* Stats Number Counter */
+  .stat-num {
+    transition: transform .3s;
+  }
+  .stat-divider:hover .stat-num,
+  .stats-grid > div:hover .stat-num {
+    transform: scale(1.06);
+  }
+
+  /* Reduzierte Bewegung */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-logo, .logo-square, .clock-hands .hand,
+    .clock-ring, .clock-marks, .clock-pin,
+    .hero h1 .highlight, .h1-rest .word,
+    .anim-fade,
+    .case-before, .case-after, .case-arrow,
+    .chart-area, .chart-line, .chart-dot, .chart-label,
+    .case-reduction::after {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      stroke-dashoffset: 0 !important;
+    }
+    .case-before { opacity: .55 !important; }
+    .case-arrow { opacity: .65 !important; }
+    .clock-ring.outer { opacity: .35 !important; }
+    .clock-ring.inner { opacity: .22 !important; }
+    .clock-marks { opacity: .55 !important; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1080px) {
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .solution-points { grid-template-columns: 1fr; }
+    /* Pfeile nur im 4-Spalten-Layout */
+    .step::after { display: none; }
+  }
+  @media (max-width: 860px) {
+    .stats-grid { grid-template-columns: 1fr; gap: 20px; }
+    .stat-divider { border-right: none; border-bottom: 1px solid rgba(255,255,255,.22); padding-bottom: 20px; }
+    .problems-grid { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: 1fr; }
+    .case { grid-template-columns: 1fr; padding: 40px 28px; gap: 32px; text-align: center; }
+    .case-reduction { margin-left: auto; margin-right: auto; }
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    section.block { padding: 60px 0; }
+    .hero { padding: 56px 0 44px; }
+    .solution-callout { padding: 24px 22px; }
+    .bar-row { grid-template-columns: 64px 1fr; }
+  }
+  @media (max-width: 480px) {
+    .nav-cta { padding: 8px 14px; font-size: 13px; }
+    .nav-tagline .nav-sub { display: none; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <div class="logo">MeinProjekt</div>
-        <nav>
-            <a href="#">Start</a>
-            <a href="#">Features</a>
-            <a href="#">Kontakt</a>
-        </nav>
-    </header>
 
-    <section class="hero">
-        <h1>Willkommen</h1>
-        <p>Eine einfache Demo-Webseite mit modernem Design. Bereit zum Anpassen und Erweitern.</p>
-        <button>Mehr erfahren</button>
-    </section>
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="nav-brand">
+      <!-- ZOB Mini-Logo (graues gekipptes Quadrat, V&S-Stil) -->
+      <svg class="nav-logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ZOB Logo">
+        <g transform="translate(30 30) rotate(-10)">
+          <rect x="-25" y="-25" width="50" height="50" fill="#8B8680"/>
+          <text x="0" y="8" font-family="Manrope, system-ui, sans-serif" font-weight="800" font-size="22" text-anchor="middle" fill="#FFFFFF" letter-spacing="-.8">ZOB</text>
+        </g>
+      </svg>
+      <div class="nav-tagline">
+        <span class="nav-product">Zeitorientierte Betriebswirtschaft</span>
+        <span class="nav-sub">powered by V&amp;S GmbH</span>
+      </div>
+    </a>
+    <a href="#kontakt" class="nav-cta">Zeit-Check vereinbaren</a>
+  </div>
+</nav>
 
-    <section class="features">
-        <div class="card">
-            <div class="icon">&#9889;</div>
-            <h3>Schnell</h3>
-            <p>Optimiert für schnelle Ladezeiten ohne externe Abhängigkeiten.</p>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <span class="hero-slogan">Arbeiten Sie schon — oder sind Sie noch beschäftigt?</span>
+        <h1><span class="highlight">Zeitorientierte Betriebswirtschaft</span> <span class="h1-rest">steht klassischer Betriebswirtschaft aus Kosten- und Mengenorientierter sicht entgegen.</span></h1>
+        <p class="hero-subline">Signifikant <span class="highlight">kürzere Durchlaufzeiten</span>, <span class="highlight">annähernd 100&nbsp;% Liefertreue</span> und radikale Senkung der Gemeinkosten sind möglich.</p>
+        <p class="hero-lead">Wir zeigen, wo in Ihrem Unternehmen Zeit verschwendet wird — und welche Hebel Ihre Abläufe spürbar verbessern.</p>
+        <p class="hero-lead">Wir wollen, daß sie das Potential verstehen und für sich nützlich machen. Eine Chance die Sie sich nicht durch die Lappen gehen lassen sollten — wir zeigen gleich warum.</p>
+        <div class="hero-buttons">
+          <a href="#kontakt" class="btn-primary">
+            Kostenlosen Zeit-Check vereinbaren
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#" download class="btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span><span class="btn-eyebrow">Für Eilige:</span> ZOB-PDF herunterladen</span>
+          </a>
         </div>
-        <div class="card">
-            <div class="icon">&#128241;</div>
-            <h3>Responsiv</h3>
-            <p>Sieht auf allen Bildschirmgrößen gut aus.</p>
-        </div>
-        <div class="card">
-            <div class="icon">&#127912;</div>
-            <h3>Anpassbar</h3>
-            <p>Einfach zu erweitern und an eigene Bedürfnisse anzupassen.</p>
-        </div>
-    </section>
+      </div>
 
-    <footer>
-        &copy; 2026 MeinProjekt. Alle Rechte vorbehalten.
-    </footer>
+      <div class="hero-logo-wrap">
+        <!-- ZOB-Logo mit laufender Uhr im Hintergrund: Zeiger drehen sich, Zifferblatt ringsherum -->
+        <svg class="hero-logo" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ZOB Logo">
+          <!-- Uhr-Ringe -->
+          <circle class="clock-ring outer" cx="190" cy="190" r="178" fill="none" stroke="#8B8680" stroke-width="1.5"/>
+          <circle class="clock-ring inner" cx="190" cy="190" r="158" fill="none" stroke="#8B8680" stroke-width=".8"/>
+
+          <!-- Stunden-Markierungen -->
+          <g class="clock-marks" stroke="#8B8680" stroke-linecap="round">
+            <line x1="190" y1="18"  x2="190" y2="32"  stroke-width="3"/>
+            <line x1="190" y1="362" x2="190" y2="348" stroke-width="3"/>
+            <line x1="18"  y1="190" x2="32"  y2="190" stroke-width="3"/>
+            <line x1="362" y1="190" x2="348" y2="190" stroke-width="3"/>
+            <line x1="276" y1="34"  x2="271" y2="47"  stroke-width="1.5"/>
+            <line x1="346" y1="104" x2="333" y2="109" stroke-width="1.5"/>
+            <line x1="346" y1="276" x2="333" y2="271" stroke-width="1.5"/>
+            <line x1="276" y1="346" x2="271" y2="333" stroke-width="1.5"/>
+            <line x1="104" y1="346" x2="109" y2="333" stroke-width="1.5"/>
+            <line x1="34"  y1="276" x2="47"  y2="271" stroke-width="1.5"/>
+            <line x1="34"  y1="104" x2="47"  y2="109" stroke-width="1.5"/>
+            <line x1="104" y1="34"  x2="109" y2="47"  stroke-width="1.5"/>
+          </g>
+
+          <!-- ZOB-Quadrat (transparent, Logo im Zentrum) -->
+          <g class="logo-square">
+            <g transform="translate(190 190) rotate(-10)">
+              <rect x="-94" y="-94" width="188" height="188" fill="none" stroke="#8B8680" stroke-width="2" opacity=".55"/>
+              <text x="0" y="32" font-family="Manrope, system-ui, sans-serif" font-weight="800" font-size="110" text-anchor="middle" fill="#8B8680" letter-spacing="-4">ZOB</text>
+            </g>
+          </g>
+        </svg>
+        <span class="hero-logo-credit">powered by <b>V&amp;S GmbH</b></span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS BAND ============ -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-divider">
+        <span class="stat-num">bis zu 80&nbsp;%</span>
+        <span class="stat-label">kürzere Durchlaufzeit</span>
+      </div>
+      <div class="stat-divider">
+        <span class="stat-num">25–30&nbsp;%</span>
+        <span class="stat-label">Gesamtkosten Reduktion</span>
+      </div>
+      <div>
+        <span class="stat-num">Annähernd 100&nbsp;%</span>
+        <span class="stat-label">Liefertreue</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <h2>Typische Symptome, die wir immer öfter sehen.</h2>
+    </div>
+    <div class="problems-grid">
+      <div class="problem-card">
+        <div class="problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <h3>Aufträge dauern länger als geplant</h3>
+          <p>Durchlaufzeiten werden durch Losgrößenbildung stark beeinflusst und Liefertermine geraten dadurch ins Rutschen. Das Seriengeschäft schwindet, die Varianz nimmt zu.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="15" x2="12" y2="15"/></svg>
+        </div>
+        <div>
+          <h3>Liefertermine werden kritisch</h3>
+          <p>Liefertreue liegt oft unter 75&nbsp;% — Kunden werden zunehmend unzufrieden, sie fangen an hauptsächlich die wichtigen pünktlich zu bedienen.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <h3>Planung und Umplanung kosten viel Zeit</h3>
+          <p>Reihenfolgevertauschung der Aufträge sorgt für viel indirekte Beschäftigung. Rückfragen und Reorganisations-Schleifen verlängern den Fluss der Wertschöpfung.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div>
+          <h3>Bestände wachsen, Abrufe nicht</h3>
+          <p>Aufgrund von kostengünstiger Losgrößenbildung produzieren Sie zu viel. Ob den Überbestand jemals jemand kauft wissen Sie nicht. Vor allem bei hoher Varianz ein Desaster.</p>
+        </div>
+      </div>
+    </div>
+    <div class="section-head">
+      <br></br><h2>Kommt Ihnen das bekannt vor?</h2>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOLUTION ============ -->
+<section class="block alt">
+  <div class="container">
+    <div class="solution-intro">
+      <h2>ZOB — wie können Sie sich das vorstellen?</h2>
+      <h4>Neue Rahmenbedingungen, ruhige Abläufe, zufriedene Kunden.</h4>
+      <p>Bezogen auf das gesamte Produktportfolio wird die Durchlaufzeit radikal reduziert und fixiert.</p>
+    </div>
+
+    <div class="solution-points">
+      <div class="solution-point">
+        <span class="solution-point-num">1</span>
+        <div>
+          <h4>Fixe Durchlaufzeit als Maß der Dinge</h4>
+          <p>Nebenzeiten, die nicht wertschöpfend sind, eliminieren wir konsequent.</p>
+        </div>
+      </div>
+      <div class="solution-point">
+        <span class="solution-point-num">2</span>
+        <div>
+          <h4>Variantenfertigung beherrschen</h4>
+          <p>Hohe Varianz stört den Produktionsablauf nicht mehr.</p>
+        </div>
+      </div>
+      <div class="solution-point">
+        <span class="solution-point-num">3</span>
+        <div>
+          <h4>Produktion auf echten Bedarf</h4>
+          <p>Produziert wird ausschließlich, was der Kunde tatsächlich bestellt. Das erfordert auch flexible Kapa.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="solution-callout">
+      <p class="callout-quote">Sie denken sich: "Das macht doch gar keinen Sinn!"</p>
+      <p>Aus der Sicht einer kosten- und mengenorientierten Betriebswirtschaft scheint sich das nicht zu lohnen: mehr Rüstvorgänge, steigende Fertigungskosten und flexible Kapazitäten, die höhere Löhne mit sich bringen — gute Gründe, weshalb Sie so denken.</p>
+      <p class="emphasis">Die <em>signifikante Reduzierung der Gemeinkosten</em> durch diese andere Arbeitsweise wird Sie eines Besseren belehren.</p>
+    </div>
+    <!-- 3 Kacheln verstecken... ;-) 
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-num">01 — KERN</span>
+        <h3>Durchlaufzeiten fixieren</h3>
+        <p>Produktion kann rückfragefrei stattfinden. Aufträge sind klar.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">02 — MARKTSCHWANKUNG</span>
+        <h3>Flexible Kapazität</h3>
+        <p>Kompetenz der Mitarbeiter erhöhen. Verlängerte Werkbänke nutzen.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">03 — EFFIZIENZ</span>
+        <h3>Rüstzeiten reduzieren</h3>
+        <p>Rüstzeitoptimierung. Rüstvermeidung durch Low-Cost-Automation!</p>
+      </div>
+    </div>
+    -->
+  </div>
+</section>
+
+<!-- ============ CASE ============ -->
+<section class="block">
+  <div class="container">
+    <div class="case">
+      <div class="case-content">
+        <span class="eyebrow">Durchlaufzeiten aus der Praxis</span>
+        <h2>Von &#216;&nbsp;34 auf 7 Kalendertage.</h2>
+        <p>Bei einem Kunden haben wir die Durchlaufzeit von &#216;&nbsp;34 auf fixe 7 Kalendertage reduziert — mit Potenzial zur weiteren Senkung. Empirische Daten aus rund 100 anderen Unternehmen zeigen das gleiche Potential.</p>
+        <span class="case-reduction">
+          <span class="case-reduction-num"><span class="approx">≈</span>&nbsp;80&nbsp;%</span>
+          <span class="case-reduction-text">
+            <b>kürzere Durchlaufzeit</b>
+          </span>
+        </span>
+      </div>
+
+      <div class="case-visual">
+        <div class="case-before">
+          <span class="case-value crossed" data-case-counter data-prefix="&#216;&nbsp;" data-target="34">&#216;&nbsp;0</span>
+          <span class="case-unit">TAGE VORHER</span>
+        </div>
+        <span class="case-arrow">→</span>
+        <div class="case-after">
+          <span class="case-value" data-case-counter data-target="7">0</span>
+          <span class="case-unit">TAGE NACHHER</span>
+        </div>
+      </div>
+
+      <div class="case-chart">
+        <div class="case-chart-head">
+          <span class="case-chart-title">Kostenreduktion durch Zeitreduktion</span>
+          <span class="case-chart-sub">Empirisch belegter Zusammenhang</span>
+        </div>
+        <svg class="case-chart-svg" viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" aria-label="Kostenreduktion-Kurve in Abhängigkeit zur Zeitreduktion">
+          <g stroke="rgba(255,255,255,.10)" stroke-width="1">
+            <line x1="80" y1="40"  x2="780" y2="40"/>
+            <line x1="80" y1="95"  x2="780" y2="95"/>
+            <line x1="80" y1="150" x2="780" y2="150"/>
+            <line x1="80" y1="205" x2="780" y2="205"/>
+            <line x1="80" y1="260" x2="780" y2="260"/>
+          </g>
+          <g font-family="Manrope, sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.65)" text-anchor="end">
+            <text x="68" y="44">45 %</text>
+            <text x="68" y="99">35 %</text>
+            <text x="68" y="154">25 %</text>
+            <text x="68" y="209">15 %</text>
+            <text x="68" y="264">5 %</text>
+            <text x="68" y="290">0 %</text>
+          </g>
+          <text x="22" y="160" font-family="Manrope, sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,.85)" text-anchor="middle" transform="rotate(-90 22 160)">Kostenreduktion</text>
+          <text x="430" y="312" font-family="Manrope, sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,.85)" text-anchor="middle">Zeitreduktion</text>
+          <g font-family="Manrope, sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.65)" text-anchor="middle">
+            <text x="115" y="290">5 %</text>
+            <text x="193" y="290">15 %</text>
+            <text x="271" y="290">25 %</text>
+            <text x="349" y="290">35 %</text>
+            <text x="427" y="290">45 %</text>
+            <text x="505" y="290">55 %</text>
+            <text x="583" y="290">65 %</text>
+            <text x="661" y="290">75 %</text>
+            <text x="739" y="290">85 %</text>
+          </g>
+          <path class="chart-area" d="M115,272 C 250,271 380,265 505,248 C 600,232 670,202 710,170 C 720,162 725,156 729,150 L729,275 L115,275 Z"
+                fill="url(#caseGrad)"/>
+          <path class="chart-line" d="M115,272 C 250,271 380,265 505,248 C 600,232 670,202 710,170 C 720,162 725,156 729,150"
+                fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+          <circle class="chart-dot" cx="729" cy="150" r="8" fill="#FFFFFF" stroke="#8B8680" stroke-width="2"/>
+          <text class="chart-label" x="729" y="132" font-family="Manrope, sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">≈ 25 %</text>
+          <defs>
+            <linearGradient id="caseGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FFFFFF"/>
+              <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <p class="case-chart-note">Bei rund <b>80&nbsp;% Zeitreduktion</b> ist eine <b>Kostenreduktion von ca. 25&nbsp;%</b> realistisch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENEFITS ============ -->
+<section class="block alt">
+  <div class="container">
+    <div class="section-head">
+      <h2>Was Sie davon haben!</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Zufriedene Kunden</h3>
+        <p>Annähernd 100&nbsp;% Liefertreue</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+        </div>
+        <h3>Senkung der Gemeinkosten</h3>
+        <p>Mehr Gewinn bei gleichem Umsatz</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Glückliche Mitarbeiter</h3>
+        <p>Stabile Abläufe ohne Korsett</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 7v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V7l-8-5z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Stolze Eigentümer</h3>
+        <p>Markenbildung und Reputation</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <h2>Wie könnte es klappen?</h2>
+      <p>In wenigen Schritten zum Erfolg. Kein Vertrag. Kein Risiko.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <h3>Erstgespräch</h3>
+        <p>ZOB-Verständnis klären. Erste Annahmen zu Potenzial erkennen.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <h3>Potenzialanalyse</h3>
+        <p>Annahmen erweitern und überprüfen. Erste Einschätzung des Nutzens.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <h3>Führungskräfteworkshop</h3>
+        <p>ZOB kennenlernen um Nutzen zu verstehen und zu bewerten.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">4</span>
+        <h3>Umsetzung</h3>
+        <p>Impulse geben — Kompetenz erweitern — selber machen!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLOGAN ============ -->
+<section class="slogan-section">
+  <div class="container">
+    <div class="slogan-line"></div>
+    <p class="slogan-text">Wir sind Ihr <em>Wegbereiter</em> — und <em>Sparringspartner</em>.</p>
+    <div class="slogan-line"></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact-section" id="kontakt">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-text">
+        <h2>Jetzt Zeit-Check vereinbaren.</h2>
+        <p>Sprechen Sie mit uns über Ihre größten Zeitfresser — unverbindlich, in 30&nbsp;Minuten.</p>
+        <a href="mailto:kontakt@v-und-s.de" class="btn-primary">
+          Termin vereinbaren
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="contact-cards">
+        <div class="contact-card">
+          <img class="avatar" src="https://v-und-s.de/wp-content/uploads/2023/11/274A9757_websize-683x1024.jpg" alt="Christian Köster" loading="lazy">
+          <div>
+            <h4>Christian Köster</h4>
+            <div class="role">Impulsgebender Berater und Wertschöpfungs Architekt </div>
+            <div class="details">
+              <a href="tel:+49123456789">☎ +49 170 936 710 6</a>
+              <a href="mailto:christian@v-und-s.de">✉ koester@v-und-s.de</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <img class="avatar" src="https://v-und-s.de/wp-content/uploads/2026/03/IMG_7923.png" alt="Umut Akis" loading="lazy">
+          <div>
+            <h4>Umut Akis</h4>
+            <div class="role">Berater</div>
+            <div class="details">
+              <a href="tel:+49123456790">☎ +49 123 456 78 9-1</a>
+              <a href="mailto:umut@v-und-s.de">✉ akis@v-und-s.de</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container footer-inner">
+    <div>© 2026 V&amp;S — Zeitorientierte Betriebswirtschaft</div>
+    <div>
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // === Scroll-triggered Animationen via IntersectionObserver ===
+  let chartAnimator = null;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        if (entry.target.dataset.counter !== undefined) {
+          startCounter(entry.target);
+        }
+        if (entry.target.classList.contains('case-chart-svg') && chartAnimator) {
+          chartAnimator();
+        }
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+
+  // Cards mit gestaffeltem Fade-In versehen
+  function applyStagger(selector, container) {
+    const root = container || document;
+    root.querySelectorAll(selector).forEach((el, i) => {
+      el.classList.add('anim-fade');
+      if (i > 0 && i <= 4) el.classList.add('delay-' + i);
+      io.observe(el);
+    });
+  }
+
+  // === Counter-Up Animation ===
+  function startCounter(el) {
+    const target = parseFloat(el.dataset.target);
+    const range = el.dataset.range;
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const approx = el.dataset.approx === 'true';
+    const duration = 1600;
+    const start = performance.now();
+
+    function frame(now) {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+
+      if (range) {
+        const [a, b] = range.split('-').map(Number);
+        const va = Math.round(a * eased);
+        const vb = Math.round(b * eased);
+        el.innerHTML = prefix + va + '–' + vb + ' ' + suffix;
+      } else {
+        const v = Math.round(target * eased);
+        el.innerHTML = prefix + (approx && t < 1 ? '~' : (approx ? '~' : '')) + v + ' ' + suffix;
+      }
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // === H1: Rest-Wörter aufsplitten für gestaffelten Fade-In ===
+  function splitH1() {
+    const rest = document.querySelector('.h1-rest');
+    if (!rest) return;
+    const text = rest.textContent.trim();
+    const words = text.split(/\s+/);
+    rest.innerHTML = words.map(w => '<span class="word">' + w + '</span>').join(' ');
+    // Aufbau synchron zur Logo-Spin-Dauer (~2.4 s)
+    const baseDelay = 0.7;
+    const stepDelay = 0.2;
+    rest.querySelectorAll('.word').forEach((w, i) => {
+      w.style.animationDelay = (baseDelay + i * stepDelay) + 's';
+    });
+  }
+
+  // === Chart-Punkt entlang des Pfades animieren (Tacho-Effekt) ===
+  function setupChart() {
+    const svg = document.querySelector('.case-chart-svg');
+    if (!svg) return null;
+    const line = svg.querySelector('.chart-line');
+    const dot = svg.querySelector('.chart-dot');
+    const label = svg.querySelector('.chart-label');
+    if (!line || !dot) return null;
+
+    // Y-Achse: y=272 ist 0 %, y=40 ist 45 %
+    const yToPercent = (y) => Math.max(0, Math.round((272 - y) / 232 * 45));
+
+    // Initial: Punkt am Pfad-Anfang positionieren
+    const startPt = line.getPointAtLength(0);
+    dot.setAttribute('cx', startPt.x);
+    dot.setAttribute('cy', startPt.y);
+    if (label) {
+      label.setAttribute('x', startPt.x);
+      label.setAttribute('y', startPt.y - 18);
+      label.textContent = '≈ ' + yToPercent(startPt.y) + ' %';
+    }
+
+    return function animateChart() {
+      const totalLen = line.getTotalLength();
+      const duration = 2400;
+      const startTime = performance.now() + 200;
+      function frame(now) {
+        if (now < startTime) { requestAnimationFrame(frame); return; }
+        const t = Math.min(1, (now - startTime) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const pt = line.getPointAtLength(totalLen * eased);
+        dot.setAttribute('cx', pt.x);
+        dot.setAttribute('cy', pt.y);
+        if (label) {
+          label.setAttribute('x', pt.x);
+          label.setAttribute('y', pt.y - 18);
+          label.textContent = '≈ ' + yToPercent(pt.y) + ' %';
+        }
+        if (t < 1) requestAnimationFrame(frame);
+        else dot.classList.add('pulse');
+      }
+      requestAnimationFrame(frame);
+    };
+  }
+
+  // === Init ===
+  document.addEventListener('DOMContentLoaded', () => {
+    splitH1();
+    chartAnimator = setupChart();
+
+    // Case-Counter (Ø 34 → 7)
+    document.querySelectorAll('[data-case-counter]').forEach(el => {
+      el.dataset.counter = '';
+      io.observe(el);
+    });
+    // Stagger fade-in für Karten-Gruppen
+    applyStagger('.problem-card');
+    applyStagger('.solution-point');
+    applyStagger('.pillar');
+    applyStagger('.benefit');
+    applyStagger('.step');
+
+    // Solution Callout & Section Heads
+    document.querySelectorAll('.solution-callout, .section-head, .solution-intro').forEach(el => {
+      el.classList.add('anim-fade');
+      io.observe(el);
+    });
+
+    // Vorher/Nachher Balken
+    const caseVisual = document.querySelector('.case-visual');
+    if (caseVisual) io.observe(caseVisual);
+
+    // Chart-Pfad
+    const chartSvg = document.querySelector('.case-chart-svg');
+    if (chartSvg) io.observe(chartSvg);
+
+    // Stats counter
+    const stats = document.querySelectorAll('.stat-num');
+    // Stat 1: bis zu 80 %
+    if (stats[0]) {
+      stats[0].dataset.counter = '';
+      stats[0].dataset.target = '80';
+      stats[0].dataset.prefix = 'bis zu ';
+      stats[0].dataset.suffix = '%';
+      stats[0].innerHTML = 'bis zu 0&nbsp;%';
+      io.observe(stats[0]);
+    }
+    // Stat 2: 25–30 %
+    if (stats[1]) {
+      stats[1].dataset.counter = '';
+      stats[1].dataset.range = '25-30';
+      stats[1].dataset.suffix = '%';
+      stats[1].innerHTML = '0–0&nbsp;%';
+      io.observe(stats[1]);
+    }
+    // Stat 3: ~100 %
+    if (stats[2]) {
+      stats[2].dataset.counter = '';
+      stats[2].dataset.target = '100';
+      stats[2].dataset.approx = 'true';
+      stats[2].dataset.suffix = '%';
+      stats[2].innerHTML = '~0&nbsp;%';
+      io.observe(stats[2]);
+    }
+  });
+})();
+</script>
 </body>
 </html>
