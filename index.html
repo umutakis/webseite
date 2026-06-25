@@ -152,8 +152,8 @@
   .clock-ring.outer { opacity: 0; animation: fadeRingOuter .8s ease 2.2s forwards; }
   .clock-ring.inner { opacity: 0; animation: fadeRingInner .8s ease 2.4s forwards; }
   .clock-marks      { opacity: 0; animation: fadeClockMarks .8s ease 2.0s forwards; }
-  @keyframes fadeRingOuter  { to { opacity: .35; } }
-  @keyframes fadeRingInner  { to { opacity: .22; } }
+  @keyframes fadeRingOuter  { to { opacity: .5; } }
+  @keyframes fadeRingInner  { to { opacity: .3; } }
   @keyframes fadeClockMarks { to { opacity: .55; } }
   .hero-logo-credit {
     font-size: 12px;
@@ -1080,8 +1080,8 @@
     }
     .case-before { opacity: .55 !important; }
     .case-arrow { opacity: .65 !important; }
-    .clock-ring.outer { opacity: .35 !important; }
-    .clock-ring.inner { opacity: .22 !important; }
+    .clock-ring.outer { opacity: .5 !important; }
+    .clock-ring.inner { opacity: .3 !important; }
     .clock-marks { opacity: .55 !important; }
   }
 
@@ -1156,11 +1156,11 @@
         <!-- ZOB-Logo mit laufender Uhr im Hintergrund: Zeiger drehen sich, Zifferblatt ringsherum -->
         <svg class="hero-logo" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ZOB Logo">
           <!-- Uhr-Ringe -->
-          <circle class="clock-ring outer" cx="190" cy="190" r="178" fill="none" stroke="#7E8176" stroke-width="1.5"/>
-          <circle class="clock-ring inner" cx="190" cy="190" r="158" fill="none" stroke="#7E8176" stroke-width=".8"/>
+          <circle class="clock-ring outer" cx="190" cy="190" r="178" fill="none" stroke="#179BB1" stroke-width="1.5"/>
+          <circle class="clock-ring inner" cx="190" cy="190" r="158" fill="none" stroke="#179BB1" stroke-width=".8"/>
 
           <!-- Stunden-Markierungen -->
-          <g class="clock-marks" stroke="#7E8176" stroke-linecap="round">
+          <g class="clock-marks" stroke="#127E90" stroke-linecap="round">
             <line x1="190" y1="18"  x2="190" y2="32"  stroke-width="3"/>
             <line x1="190" y1="362" x2="190" y2="348" stroke-width="3"/>
             <line x1="18"  y1="190" x2="32"  y2="190" stroke-width="3"/>
@@ -1178,8 +1178,8 @@
           <!-- ZOB-Quadrat (transparent, Logo im Zentrum) -->
           <g class="logo-square">
             <g transform="translate(190 190) rotate(10)">
-              <rect x="-94" y="-94" width="188" height="188" fill="none" stroke="#7E8176" stroke-width="2" opacity=".55"/>
-              <text x="0" y="32" font-family="Montserrat, system-ui, sans-serif" font-weight="800" font-size="110" text-anchor="middle" fill="#7E8176" letter-spacing="-4">ZOB</text>
+              <rect x="-94" y="-94" width="188" height="188" fill="none" stroke="#179BB1" stroke-width="2" opacity=".55"/>
+              <text x="0" y="32" font-family="Montserrat, system-ui, sans-serif" font-weight="800" font-size="110" text-anchor="middle" fill="#0E6373" letter-spacing="-4">ZOB</text>
             </g>
           </g>
         </svg>
